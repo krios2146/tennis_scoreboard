@@ -9,14 +9,16 @@
             <h1>Start new match</h1>
             <div class="new-match-image"></div>
             <div class="form-container center">
-                <form method="post" action="#">
-                    <p style="color: red;">Sample error message</p>
+                <%= form_with model: @match, url: matches_path, local: true do |form| %>
+                    <% if @error.present? %>
+                        <p style="color: red;"><%= @error %></p>
+                    <% end %>
                     <label class="label-player" for="playerOne">Player one</label>
-                    <input class="input-player" placeholder="Name" type="text" required title="Enter a name">
+                    <%= form.text_field :player_one, placeholder: "Name", required: true, title: "Enter a name", class: "input-player" %>
                     <label class="label-player" for="playerTwo">Player two</label>
-                    <input class="input-player" placeholder="Name" type="text" required title="Enter a name">
-                    <input class="form-button" type="submit" value="Start">
-                </form>
+                    <%= form.text_field :player_two, placeholder: "Name", required: true, title: "Enter a name", class: "input-player" %>
+                    <%= form.submit "Start", class: "form-button" %>
+                <% end %>
             </div>
         </div>
     </div>
