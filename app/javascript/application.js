@@ -1,3 +1,9 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
-import "controllers"
+// JavaScript for toggling the dropdown menu
+document.addEventListener("DOMContentLoaded", function () {
+  const navToggle = document.querySelector(".nav-toggle");
+  const navLinks = document.querySelector(".nav-links");
+
+  navToggle.addEventListener("click", function () {
+    navLinks.classList.toggle("active");
+  });
+});
