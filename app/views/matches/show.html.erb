@@ -1,10 +1,44 @@
-<p style="color: green"><%= notice %></p>
+<% content_for(:title) { "Tennis Scoreboard | Match Score" } %>
+<% content_for(:head) do %>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+<% end %>
 
-<%= render @match %>
-
-<div>
-  <%= link_to "Edit this match", edit_match_path(@match) %> |
-  <%= link_to "Back to matches", matches_path %>
-
-  <%= button_to "Destroy this match", @match, method: :delete %>
-</div>
+<main>
+    <div class="container">
+        <h1>Current match</h1>
+        <div class="current-match-image"></div>
+        <section class="score">
+            <table class="table">
+                <thead class="result">
+                <tr>
+                    <th class="table-text">Player</th>
+                    <th class="table-text">Sets</th>
+                    <th class="table-text">Games</th>
+                    <th class="table-text">Points</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="player1">
+                    <td class="table-text">Rafael Nadal</td>
+                    <td class="table-text">2</td>
+                    <td class="table-text">4</td>
+                    <td class="table-text">40</td>
+                    <td class="table-text">
+                        <div class="score-btn">Score</div>
+                    </td>
+                </tr>
+                <tr class="player2">
+                    <td class="table-text">Roger Federer</td>
+                    <td class="table-text">2</td>
+                    <td class="table-text">3</td>
+                    <td class="table-text">15</td>
+                    <td class="table-text">
+                        <div class="score-btn">Score</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</main>

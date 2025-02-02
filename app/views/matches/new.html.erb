@@ -1,11 +1,23 @@
-<% content_for :title, "New match" %>
+<% content_for(:title) { "Tennis Scoreboard | New Match" } %>
+<% content_for(:head) do %>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+<% end %>
 
-<h1>New match</h1>
-
-<%= render "form", match: @match %>
-
-<br>
-
-<div>
-  <%= link_to "Back to matches", matches_path %>
-</div>
+<main>
+    <div class="container">
+        <div>
+            <h1>Start new match</h1>
+            <div class="new-match-image"></div>
+            <div class="form-container center">
+                <form method="post" action="#">
+                    <p style="color: red;">Sample error message</p>
+                    <label class="label-player" for="playerOne">Player one</label>
+                    <input class="input-player" placeholder="Name" type="text" required title="Enter a name">
+                    <label class="label-player" for="playerTwo">Player two</label>
+                    <input class="input-player" placeholder="Name" type="text" required title="Enter a name">
+                    <input class="form-button" type="submit" value="Start">
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

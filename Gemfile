@@ -64,3 +64,5 @@ end
 
 gem "yard", "~> 0.9.37"
 gem "solargraph", "~> 0.51.2"
+
+gem "sassc-rails", "~> 2.1"
