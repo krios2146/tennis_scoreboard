@@ -1,6 +1,11 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: %i[ show update new create ]
 
+  def initialize(*args)
+    super(*args)
+    @ongoing_match_service = OngoingMatchService.instance
+  end
+
   # GET /matches
   def index
     @matches = Match.all
@@ -8,6 +13,9 @@ class MatchesController < ApplicationController
 
   # GET /matches/:id
   def show
+    uuid = params[:id]
+
+    @match = @ongoing_match_service.get(uuid)
   end
 
   # GET /matches/new
@@ -40,23 +48,11 @@ class MatchesController < ApplicationController
 
   # PATCH/PUT /matches/:id
   def update
-    respond_to do |format|
-      if @match.update(match_params)
-        format.html { redirect_to @match, notice: "Match was successfully updated." }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_match
       @match = Match.new
-    end
-
-    # Only allow a list of trusted parameters through.
-    def match_params
-      params.fetch(:match, {})
     end
 end
