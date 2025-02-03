@@ -47,7 +47,8 @@ class ScoreService include Singleton
     end
 
     if scoring_player.sets == 2
-      match.winner = scoring_player_id
+      Rails.logger.info "Setting winner_id to #{scoring_player_id}"
+      match.winner_id = scoring_player_id
     end
 
     match

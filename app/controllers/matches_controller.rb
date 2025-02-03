@@ -56,8 +56,16 @@ class MatchesController < ApplicationController
 
     @match = @score_service.update_score(@match, scoring_player_id)
 
-    Rails.logger.info "#{@match.inspect}"
+    if @match.winner_id == nil
+      render :show and return
+    end
 
-    render :show
+    if @match.player_one.id == @match.winner_id
+      Match.create(winner: Player.find(@match.player_one.id), loser: Player.find(@match.player_two.id))
+    else
+      Match.create(winner: Player.find(@match.player_one.id), loser: Player.find(@match.player_two.id))
+    end
+
+    redirect_to matches_path
   end
 end
