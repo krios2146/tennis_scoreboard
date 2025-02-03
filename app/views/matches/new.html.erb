@@ -9,7 +9,7 @@
             <h1>Start new match</h1>
             <div class="new-match-image"></div>
             <div class="form-container center">
-                <%= form_with model: @match, url: matches_path, local: true do |form| %>
+                <%= form_with url: matches_path, local: true do |form| %>
                     <% if @error.present? %>
                         <p style="color: red;"><%= @error %></p>
                     <% end %>
