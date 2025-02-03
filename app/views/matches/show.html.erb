@@ -20,21 +20,23 @@
                 </thead>
                 <tbody>
                 <tr class="player1">
-                    <td class="table-text"><%= @match[:player_one].name %></td>
-                    <td class="table-text"><%= @match[:player_one_sets] || 0 %></td>
-                    <td class="table-text"><%= @match[:player_one_games] || 0%></td>
-                    <td class="table-text"><%= @match[:player_one_points] || 0%></td>
+                    <% player_one = @match.player_one %>
+                    <td class="table-text"><%= player_one.name %></td>
+                    <td class="table-text"><%= player_one.sets %></td>
+                    <td class="table-text"><%= player_one.games %></td>
+                    <td class="table-text"><%= player_one.points %></td>
                     <td class="table-text">
-                        <div class="score-btn">Score</div>
+                        <%= button_to "Score", match_path(params[:id]), method: :patch, params: { scoring_player_id: player_one.id }, class: "score-btn" %>
                     </td>
                 </tr>
                 <tr class="player2">
-                    <td class="table-text"><%= @match[:player_two].name %></td>
-                    <td class="table-text"><%= @match[:player_two_sets] || 0 %></td>
-                    <td class="table-text"><%= @match[:player_two_games] || 0%></td>
-                    <td class="table-text"><%= @match[:player_two_points] || 0%></td>
+                    <% player_two = @match.player_two %>
+                    <td class="table-text"><%= player_two.name %></td>
+                    <td class="table-text"><%= player_two.sets %></td>
+                    <td class="table-text"><%= player_two.games %></td>
+                    <td class="table-text"><%= player_two.points %></td>
                     <td class="table-text">
-                        <div class="score-btn">Score</div>
+                        <%= button_to "Score", match_path(params[:id]), method: :patch, params: { scoring_player_id: player_two.id }, class: "score-btn" %>
                     </td>
                 </tr>
                 </tbody>
