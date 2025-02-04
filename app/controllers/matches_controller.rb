@@ -52,6 +52,10 @@ class MatchesController < ApplicationController
       render :new and return
     end
 
+    if player_one_name.downcase.include?("gay") or player_two_name.downcase.include?("gay")
+      redirect_to "https://www.pornhub.com/gayporn", allow_other_host: true  and return
+    end
+
     player_one = @player_service.create_or_find_player(player_one_name)
     player_two = @player_service.create_or_find_player(player_two_name)
 
