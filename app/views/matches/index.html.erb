@@ -35,11 +35,13 @@
         </table>
 
         <div class="pagination">
-            <a class="prev" href="#"> < </a>
-            <a class="num-page current" href="#">1</a>
-            <a class="num-page" href="#">2</a>
-            <a class="num-page" href="#">3</a>
-            <a class="next" href="#"> > </a>
+            <% current_page = params[:page].to_i == 0 ? 1 : params[:page].to_i %>
+            <% previous_page = current_page - 1 >= 1 ? current_page - 1 : 1 %>
+            <% next_page = current_page + 1 %>
+
+            <a class="prev" href="<%= matches_path(page: previous_page) %>"> < </a>
+            <a class="num-page current" href="<%= matches_path(page: current_page) %>"><%= current_page %></a>
+            <a class="next" href="<%= matches_path(page: next_page) %>"> > </a>
         </div>
     </div>
 </main>

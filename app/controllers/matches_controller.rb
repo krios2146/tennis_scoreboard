@@ -4,11 +4,27 @@ class MatchesController < ApplicationController
     @ongoing_match_service = OngoingMatchService.instance
     @player_service = PlayerService.instance
     @score_service = ScoreService.instance
+    @page_limit = 5
   end
 
   # GET /matches
   def index
-    @matches = Match.all
+    query = params[:q]
+    page = params[:page].to_i
+
+    if page > 0
+      page -= 1
+    end
+
+    if query == nil
+      @matches = Match.limit(@page_limit)
+                .offset(page * @page_limit)
+    else
+      @matches = Match.joins(:player_one, :player_two)
+                .where("LOWER(players.name) LIKE LOWER(?)", "%#{query}%")
+                .limit(@page_limit)
+                .offset(page * @page_limit)
+    end
   end
 
   # GET /matches/:id
