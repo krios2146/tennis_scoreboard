@@ -6,13 +6,14 @@
 <main>
     <div class="container">
         <h1>Matches</h1>
-        <div class="input-container">
-            <input class="input-filter" placeholder="Filter by name" type="text" />
-            <div>
-                <a href="#">
-                    <button class="btn-filter">Reset Filter</button>
-                </a>
-            </div>
+        <div>
+            <%= form_with url: matches_path, method: :get, local: true, class: "input-container" do |form| %>
+              <input class="input-filter" placeholder="Filter by name" type="text" name="q" value="<%= params[:q] %>" />
+              
+              <div>
+                <button class="btn-filter" type="submit">Apply Filter</button>
+              </div>
+            <% end %>
         </div>
 
         <table class="table-matches">
@@ -35,7 +36,7 @@
         </table>
 
         <div class="pagination">
-            <% current_page = params[:page].to_i == 0 ? 1 : params[:page].to_i %>
+            <% current_page = @page + 1 %>
             <% previous_page = current_page - 1 >= 1 ? current_page - 1 : 1 %>
             <% next_page = current_page + 1 %>
 

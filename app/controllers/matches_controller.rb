@@ -10,20 +10,22 @@ class MatchesController < ApplicationController
   # GET /matches
   def index
     query = params[:q]
-    page = params[:page].to_i
+    @page = params[:page].to_i
 
-    if page > 0
-      page -= 1
+    if @page < 0
+      @page = 0
+    elsif @page > 0
+      @page -= 1
     end
 
     if query == nil
       @matches = Match.limit(@page_limit)
-                .offset(page * @page_limit)
+                .offset(@page * @page_limit)
     else
-      @matches = Match.joins(:player_one, :player_two)
+      @matches = Match.joins(:winner, :loser)
                 .where("LOWER(players.name) LIKE LOWER(?)", "%#{query}%")
                 .limit(@page_limit)
-                .offset(page * @page_limit)
+                .offset(@page * @page_limit)
     end
   end
 
