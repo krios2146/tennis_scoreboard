@@ -63,7 +63,7 @@ group :test do
 end
 
 gem "yard", "~> 0.9.37"
-gem "solargraph", "~> 0.52.0"
+gem "solargraph", "~> 0.53.1"
 
 gem "sassc-rails", "~> 2.1"
 
