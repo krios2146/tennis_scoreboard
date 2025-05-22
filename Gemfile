@@ -67,4 +67,4 @@ gem "solargraph", "~> 0.52.0"
 
 gem "sassc-rails", "~> 2.1"
 
-gem "rubocop", "~> 1.73"
+gem "rubocop", "~> 1.75"
